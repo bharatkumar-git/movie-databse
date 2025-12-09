@@ -13,6 +13,7 @@ const NavBar = props => {
       <h2>movieDB</h2>
       <div className="flex-gap-4-container">
         <input
+          type="text"
           onChange={event => setUserInput(event.target.value)}
           value={userInput}
         />

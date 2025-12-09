@@ -51,7 +51,7 @@ const SearchResultsPage = props => {
       {renderList.map(item => (
         <li key={item.id} className="movie-items-li">
           <img alt="poster" src={item.poster} />
-          <p>{item.name}</p>
+          <h4>{item.name}</h4>
           <p>{item.rating}</p>
           <button
             onClick={() => history.push(`/details/${item.id}`)}

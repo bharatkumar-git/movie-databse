@@ -20,3 +20,10 @@
 .movie-items-li > img {
   width: 100%;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}

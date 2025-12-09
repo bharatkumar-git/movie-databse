@@ -12,11 +12,12 @@ const PopularMoviesPage = props => {
 
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.pending)
   const [renderList, setRenderList] = useState([])
+  const [pageNumber, setPageNumber] = useState(1)
 
   useEffect(() => {
     const makeApiCall = async () => {
       const API_KEY = '35474548ccfb894572e10e892cffc0fe'
-      const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+      const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
       try {
         const response = await fetch(apiUrl)
         const data = await response.json()
@@ -42,26 +43,34 @@ const PopularMoviesPage = props => {
     }
 
     makeApiCall()
-  }, [])
+  }, [pageNumber])
 
   const renderApiStatusPendingView = () => <p>Loading ...</p>
 
+  const prevButtonHandler = () => {
+    if (pageNumber > 1) {
+      setPageNumber(prev => prev - 1)
+    }
+  }
+
   const renderApiStatusSuccessView = () => (
-    <ul className="movie-items-ul">
-      {renderList.map(item => (
-        <li key={item.id} className="movie-items-li">
-          <img alt="poster" src={item.poster} />
-          <p>{item.name}</p>
-          <p>{item.rating}</p>
-          <button
-            onClick={() => history.push(`/details/${item.id}`)}
-            type="button"
-          >
-            View Details
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="movie-items-ul">
+        {renderList.map(item => (
+          <li key={item.id} className="movie-items-li">
+            <img alt="poster" src={item.poster} />
+            <p>{item.name}</p>
+            <p>{item.rating}</p>
+            <button
+              onClick={() => history.push(`/details/${item.id}`)}
+              type="button"
+            >
+              View Details
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 
   const renderPage = () => {
@@ -75,7 +84,20 @@ const PopularMoviesPage = props => {
     }
   }
 
-  return <div className="content-main-container">{renderPage()}</div>
+  return (
+    <>
+      <div className="content-main-container">{renderPage()}</div>
+      <div className="pagination-container">
+        <button type="button" onClick={() => prevButtonHandler()}>
+          Prev
+        </button>
+        <p>{pageNumber}</p>
+        <button type="button" onClick={() => setPageNumber(prev => prev + 1)}>
+          Next
+        </button>
+      </div>
+    </>
+  )
 }
 
 export default PopularMoviesPage
