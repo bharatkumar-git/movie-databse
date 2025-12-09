@@ -1,0 +1,27 @@
+/* .movieDetails-movies-section {
+  display: flex;
+  justify-content: center;
+} */
+.movieDetails-movie-details-container {
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.movieDetails-movie-details-container > img {
+  width: 100%;
+}
+
+.movieDetails-cast-details-ul {
+  padding: 0px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+}
+.movieDetails-cast-details-ul > li {
+  list-style: none;
+}
+.movieDetails-cast-details-ul img {
+  width: 100%;
+}

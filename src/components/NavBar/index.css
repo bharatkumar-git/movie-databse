@@ -1,0 +1,16 @@
+.navbar-main-container {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 34px;
+}
+.flex-gap-4-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.navbar-ul {
+  padding: 0px;
+  list-style-type: none;
+}
